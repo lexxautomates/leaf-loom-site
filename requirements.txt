@@ -1,0 +1,2 @@
+# Zero third-party dependencies — app.py uses only the Python stdlib.
+# Pin the runtime so Render's Python build is deterministic.

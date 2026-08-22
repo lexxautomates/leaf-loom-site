@@ -1,0 +1,21 @@
+# Render Blueprint (free tier). Deploy from this file:
+#   Dashboard -> New -> "render.yaml" -> connect repo -> Create
+# Everything below is preconfigured; no manual build/start/env edits needed.
+services:
+  - type: web
+    name: leaf-loom-capture
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    repo: https://github.com/lexxautomates/leaf-loom-site
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: ESP_TARGET
+        value: mock
+      - key: ALLOWED_ORIGIN
+        value: https://lexxautomates.github.io

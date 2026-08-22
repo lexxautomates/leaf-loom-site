@@ -39,7 +39,9 @@ import html as _html
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(ROOT, "pod_leads.db")
-PORT = int(os.environ.get("POD_PORT", "8000"))
+# Render (and most PaaS) injects the listen port as $PORT; honor it,
+# fall back to $POD_PORT (local dev) or 8000.
+PORT = int(os.environ.get("PORT") or os.environ.get("POD_PORT") or "8000")
 ESP_TARGET = os.environ.get("ESP_TARGET", "mock").lower()
 MAILCHIMP_API = os.environ.get("MAILCHIMP_API_KEY", "")
 MAILCHIMP_LIST = os.environ.get("MAILCHIMP_LIST_ID", "")
