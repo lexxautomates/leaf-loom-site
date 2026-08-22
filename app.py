@@ -27,6 +27,7 @@ Run:
 """
 import http.server
 import socketserver
+import threading
 import urllib.parse
 import urllib.request
 import json
@@ -229,6 +230,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send(404, b"not found")
 
     def do_POST(self):
+        try:
+            self._post()
+        except Exception as e:
+            # Never let an exception produce an empty reply (that is exactly
+            # the failure mode that broke the live tunnel). Return a real 500.
+            try:
+                self._send(500, json.dumps({"ok": False, "error": "server_error"}).encode(),
+                           ctype="application/json")
+            except Exception:
+                pass
+
+    def _post(self):
         u = urllib.parse.urlparse(self.path)
         if u.path != "/subscribe":
             self._send(404, b"not found")
@@ -265,12 +278,29 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send(400, json.dumps({"ok": False, "error": "invalid_email"}).encode(),
                        ctype="application/json")
             return
-        ok, detail = forward_to_esp(email, name, source, utm)
-        lead_id = store_lead(email, name, source, consent, utm, detail)
+
+        # STORE FIRST, always. The ESP forward runs in a background thread so a
+        # slow/unreachable ESP can never drop the user's success response.
+        lead_id = store_lead(email, name, source, consent, utm, "pending")
         log_event("conversion", utm)
-        print(f"[subscribe] lead_id={lead_id} email={email} consent={consent} esp={detail}")
-        self._send(200, json.dumps({"ok": True, "lead_id": lead_id, "esp": detail}).encode(),
+        self._send(200, json.dumps({"ok": True, "lead_id": lead_id}).encode(),
                    ctype="application/json")
+        self.wfile.flush()
+
+        def _forward():
+            try:
+                ok, detail = forward_to_esp(email, name, source, utm)
+                try:
+                    con = sqlite3.connect(DB)
+                    con.execute("UPDATE leads SET esp_status=? WHERE id=?", (detail, lead_id))
+                    con.commit()
+                    con.close()
+                except Exception:
+                    pass
+            except Exception:
+                pass
+
+        threading.Thread(target=_forward, daemon=True).start()
 
 
 def main():
