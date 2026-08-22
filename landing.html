@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaf &amp; Loom — Original print-on-demand apparel &amp; home goods</title>
+<meta name="description" content="Leaf & Loom is a print-on-demand shop for original apparel, home goods, and gear — made to order, shipped to your door. Join the list for early access + free shipping on your first order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1e6; --paper:#fffdf8; --ink:#2b2622; --muted:#6f655a;
+    --terra:#c9602f; --terra-d:#a64a1f; --green:#3f6b54; --gold:#e0a93b;
+    --shadow:0 18px 40px -18px rgba(43,38,34,.45);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Inter',system-ui,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;margin:0}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+  header.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(247,241,230,.82);border-bottom:1px solid rgba(43,38,34,.08)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-weight:700;font-size:20px}
+  .brand .dot{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold),var(--terra));box-shadow:inset 0 0 0 3px var(--paper)}
+  .nav nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-weight:500;font-size:14px}
+  .nav nav a:hover{color:var(--ink)}
+
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:64px 0 48px}
+  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--terra);font-weight:600}
+  .hero h1{font-size:clamp(36px,5vw,60px);margin:14px 0 16px}
+  .hero h1 em{font-style:italic;color:var(--terra)}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:46ch;margin:0 0 26px}
+  .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .pill{background:var(--paper);border:1px solid rgba(43,38,34,.10);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:500;color:var(--ink);box-shadow:var(--shadow)}
+  .pill b{color:var(--green)}
+
+  .card{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;border:1px solid rgba(43,38,34,.06)}
+  .card h3{font-size:22px;margin-bottom:6px}
+  .card .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+  .field input{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #ddd2c2;font-size:15px;background:#fff;transition:border-color .15s,box-shadow .15s}
+  .field input:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(201,96,47,.15)}
+  .btn{width:100%;border:0;cursor:pointer;padding:14px 18px;border-radius:12px;background:linear-gradient(180deg,var(--terra),var(--terra-d));color:#fff;font-size:15px;font-weight:600;box-shadow:0 10px 22px -10px rgba(166,74,31,.8);transition:transform .08s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+  .fine{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+  .msg{min-height:18px;font-size:13px;margin-top:10px;text-align:center}
+  .msg.ok{color:var(--green)} .msg.err{color:#b23a2e}
+
+  .consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 12px;font-size:13px;color:var(--ink);text-align:left}
+  .consent input{margin-top:3px;width:18px;height:18px;flex:0 0 auto;accent-color:var(--terra)}
+  .consent a{color:var(--terra);text-decoration:underline}
+
+  .art{position:relative;display:flex;justify-content:center;align-items:center;background:linear-gradient(160deg,#fff8ec,#f0e2cc);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;min-height:380px;overflow:hidden}
+  .art::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 80% 10%,rgba(224,169,59,.18),transparent 60%);pointer-events:none}
+  .art svg{width:100%;max-width:360px;height:auto;filter:drop-shadow(0 20px 30px rgba(43,38,34,.25))}
+
+  section.band{padding:54px 0}
+  .center{text-align:center}
+  .center h2{font-size:clamp(28px,4vw,40px)}
+  .center p{color:var(--muted);max-width:54ch;margin:12px auto 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+  .feat{background:var(--paper);border-radius:var(--radius);padding:22px;border:1px solid rgba(43,38,34,.06);box-shadow:var(--shadow)}
+  .feat .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(63,107,84,.12);color:var(--green);margin-bottom:12px;font-size:20px}
+  .feat h3{font-size:18px;font-family:'Fraunces';margin-bottom:6px}
+  .feat p{font-size:14px;color:var(--muted);margin:0}
+
+  .cta2{background:var(--ink);color:var(--cream);border-radius:24px;padding:46px;text-align:center;margin:0 0 60px}
+  .cta2 h2{color:var(--cream)}
+  .cta2 p{color:#cdbfae;max-width:48ch;margin:12px auto 22px}
+  .cta2 .card{background:var(--paper);max-width:440px;margin:0 auto;text-align:left}
+  .cta2 .consent{color:var(--ink)}
+
+  footer{border-top:1px solid rgba(43,38,34,.08);padding:26px 0;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center}
+  footer a{color:var(--muted);text-decoration:underline}
+  footer a:hover{color:var(--ink)}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;gap:30px;padding:40px 0 30px}
+    .grid3{grid-template-columns:1fr}
+    .nav nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Leaf &amp; Loom</div>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#why">Why us</a>
+      <a href="#join">Join the list</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="shop">
+    <div>
+      <div class="eyebrow">Print-on-demand · ships free in the US</div>
+      <h1>Your stuff should actually be <em>yours.</em></h1>
+      <p class="lead">Leaf &amp; Loom is a print-on-demand shop for original apparel, home goods, and gear — made to order, shipped to your door, zero inventory nonsense. Join the list and get early access + free shipping on your first order.</p>
+      <div class="pillrow">
+        <span class="pill"><b>✓</b> Free shipping first order</span>
+        <span class="pill"><b>✓</b> Eco cotton &amp; ceramic</span>
+        <span class="pill"><b>✓</b> 30-day happiness guarantee</span>
+      </div>
+      <a href="#join" class="btn" style="display:inline-block;width:auto;padding:14px 26px;text-decoration:none">Get early access →</a>
+    </div>
+
+    <div class="art" aria-label="Cozy reader tote bag and steaming mug illustration">
+      <svg viewBox="0 0 360 360" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bag" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e9dcc2"/><stop offset="1" stop-color="#d8c39f"/>
+          </linearGradient>
+          <linearGradient id="mug" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3f6b54"/><stop offset="1" stop-color="#2c4d3c"/>
+          </linearGradient>
+          <linearGradient id="steam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".75"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(28,40)">
+          <path d="M40 70 C40 30 70 18 96 18 C122 18 152 30 152 70" fill="none" stroke="#b7946a" stroke-width="9" stroke-linecap="round"/>
+          <rect x="14" y="66" width="164" height="208" rx="14" fill="url(#bag)" stroke="#c0a878" stroke-width="3"/>
+          <rect x="30" y="96" width="132" height="150" rx="10" fill="#fffdf8" opacity=".9"/>
+          <rect x="44" y="186" width="104" height="16" rx="3" fill="#c9602f"/>
+          <rect x="50" y="170" width="96" height="16" rx="3" fill="#3f6b54"/>
+          <rect x="40" y="154" width="112" height="16" rx="3" fill="#e0a93b"/>
+          <rect x="56" y="138" width="84" height="16" rx="3" fill="#6f655a"/>
+          <path d="M96 120 q22 -26 40 -10 q-6 26 -40 10 z" fill="#3f6b54"/>
+          <path d="M96 120 q-22 -26 -40 -10 q6 26 40 10 z" fill="#4f8066"/>
+          <path d="M96 120 v18" stroke="#2c4d3c" stroke-width="2" fill="none"/>
+        </g>
+        <g transform="translate(196,150)">
+          <path d="M150 18 C150 0 175 -6 175 14 C175 34 150 30 150 18 Z" fill="none" stroke="#b7946a" stroke-width="9"/>
+          <path d="M40 40 h96 l-10 96 a14 14 0 0 1 -14 12 h-48 a14 14 0 0 1 -14 -12 z" fill="url(#mug)"/>
+          <ellipse cx="88" cy="40" rx="48" ry="13" fill="#5a8a6f"/>
+          <ellipse cx="88" cy="40" rx="38" ry="9" fill="#3f6b54"/>
+          <path d="M70 14 q12 -22 0 -44 q-12 -20 0 -42" fill="none" stroke="url(#steam)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M104 14 q12 -22 0 -44 q-12 -20 0 -42" fill="none" stroke="url(#steam)" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <g fill="#e0a93b">
+          <path d="M312 70 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3 z"/>
+          <path d="M40 330 l2 7 7 2 -7 2 -2 7 -2 -7 -7 -2 7 -2 z"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="band center" id="why">
+    <h2>Why Leaf &amp; Loom</h2>
+    <p>We don't stock warehouses. Every piece is printed the moment you order it — less waste, fresher ink, and designs you won't see on a big-box shelf.</p>
+    <div class="grid3">
+      <div class="feat"><div class="ic">♺</div><h3>Made to order</h3>
+        <p>No overproduction. Your item is made after you buy it, then shipped straight to your door.</p></div>
+      <div class="feat"><div class="ic">✎</div><h3>Original art</h3>
+        <p>Drawn by our small studio. Cozy, original, and trademark-free — made to be gifted or kept.</p></div>
+      <div class="feat"><div class="ic">⚑</div><h3>Ships fast, returns easy</h3>
+        <p>Tracked delivery on every order and a no-runaround return policy if it's not right.</p></div>
+    </div>
+  </section>
+
+  <section class="cta2" id="join">
+    <h2>Be first through the door.</h2>
+    <p>The list gets early access and free shipping. Everyone else waits.</p>
+    <div class="card">
+      <h3>Get early access →</h3>
+      <div class="sub">No spam. One launch email, then only the good stuff. Unsubscribe anytime.</div>
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="name">First name</label>
+          <input id="name" name="name" type="text" placeholder="Sam" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="email">Email address *</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <label class="consent">
+          <input id="consent" name="consent" type="checkbox">
+          <span>I agree to receive marketing emails from Leaf &amp; Loom (new designs, sales, and restock alerts) and I have read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>. You can unsubscribe anytime with one click.</span>
+        </label>
+        <button class="btn" type="submit" id="submitBtn">Get early access →</button>
+        <div class="msg" id="msg" role="status" aria-live="polite"></div>
+        <div class="fine">We use your email for early access only. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px"><span class="dot"></span> Leaf &amp; Loom</div>
+    <div>© 2026 Leaf &amp; Loom · Print-on-demand storefront · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · All art original.</div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script>
+  // --- Funnel analytics: read UTM from URL, keep through to submission ---
+  const params = new URLSearchParams(location.search);
+  const utm = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{
+    if(params.has(k)) utm[k]=params.get(k);
+  });
+  // pageview pixel (only if a live backend endpoint is configured)
+  if (window.POD_ENDPOINT) {
+    (function(){
+      const base = window.POD_ENDPOINT.replace(/\/subscribe\/?$/, '');
+      const p = new URL(base + '/pixel.gif');
+      Object.entries(utm).forEach(([k,v])=>p.searchParams.set(k,v));
+      p.searchParams.set('ref', document.referrer||'');
+      const img = new Image(); img.src = p.toString();
+    })();
+  }
+
+  const form = document.getElementById('leadForm');
+  const msg = document.getElementById('msg');
+  const submitBtn = document.getElementById('submitBtn');
+  const consent = document.getElementById('consent');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    msg.className='msg'; msg.textContent='';
+
+    const emailEl = document.getElementById('email');
+    const email = emailEl.value.trim();
+    const name = document.getElementById('name').value.trim();
+
+    if(!consent.checked){
+      msg.className='msg err'; msg.textContent='Please tick the box to agree to marketing emails.';
+      consent.focus(); return;
+    }
+    if(!/^[^@\s]+@[^@\s]+.[^@\s]+$/.test(email)){
+      msg.className='msg err'; msg.textContent='Please enter a valid email.'; return;
+    }
+    if(!window.POD_ENDPOINT){
+      msg.className='msg err'; msg.textContent='Signup is temporarily offline — please retry shortly.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    const body = new URLSearchParams({email, name, source:'pod_landing', consent:'on', ...utm});
+    try{
+      const res = await fetch(window.POD_ENDPOINT, {
+        method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body
+      });
+      const data = await res.json();
+      if(data.ok){
+        msg.className='msg ok';
+        msg.textContent='✓ You’re on the list. Watch your inbox — your early-access link and free-shipping code are coming.';
+        form.reset();
+        new Image().src = window.POD_ENDPOINT.replace(/\/subscribe\/?$/, '') +
+          '/pixel.gif?event=conversion' +
+          Object.entries(utm).map(([k,v])=>`&${k}=${encodeURIComponent(v)}`).join('');
+      } else {
+        msg.className='msg err'; msg.textContent='Something went wrong: '+(data.error||'try again');
+        submitBtn.disabled = false; submitBtn.textContent='Get early access →';
+      }
+    }catch(err){
+      msg.className='msg err'; msg.textContent='Network error — please retry.';
+      submitBtn.disabled = false; submitBtn.textContent='Get early access →';
+    }
+  });
+</script>
+</body>
+</html>
